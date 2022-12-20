@@ -3,15 +3,20 @@ import React, {useState} from 'react'
 
 const Homepage = () => {
 
-    const [add, setAdd] = useState([])
-    const [addItem, setAddItem] = useState()
+    const [inputItem, setInputItem] = useState('')
+    const [addItem, setAddItem] = useState([])
 
     const handleChange = (e) =>{
-        setAdd(e.target.value)
+        setInputItem(e.target.value)
     }
 
     const addtoList = () =>{  
-        
+        if(inputItem){
+            setAddItem([...addItem, inputItem])
+            setInputItem('')
+        }else{
+            alert("List cannot be empty")
+        }
     }
 
 
@@ -20,7 +25,8 @@ const Homepage = () => {
             <h1>To Do List</h1>
             <div className='inputItem'>
                 <input classname="input"
-                    onChange={()=>{handleChange()}} 
+                    onChange={(e)=>{handleChange(e)}} 
+                    value={inputItem}
                     type="text"
                     placeholder="Type your todo list..." 
                     style={{height: 50, width: 400}}/>
@@ -28,6 +34,7 @@ const Homepage = () => {
                     onClick={()=>{addtoList()}}
                     style={{height: 57, width: 57}}>+
                 </button>
+                {addItem}
             </div>
 
             
