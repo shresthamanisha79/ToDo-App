@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Card from '../components/card'
 
 
 const Homepage = () => {
@@ -21,20 +22,22 @@ const Homepage = () => {
 
 
     return(
-        <div classname="homePage" style={{color:'white', backgroundColor:'grey', height: 500}}>
-            <h1>To Do List</h1>
+        <div classname="homePage" style={{ backgroundColor:'#EDEADE', height: 600}}>
+            <h1 style={{color:'#FF5733'}}>To Do List</h1>
             <div className='inputItem'>
                 <input classname="input"
                     onChange={(e)=>{handleChange(e)}} 
                     value={inputItem}
                     type="text"
                     placeholder="Type your todo list..." 
-                    style={{height: 50, width: 400}}/>
+                    style={{height: 50, width: 400, marginBottom:20}}/>
                 <button classname="button" 
                     onClick={()=>{addtoList()}}
                     style={{height: 57, width: 57}}>+
                 </button>
-                {addItem}
+                {addItem.map((item, id)=>{
+                    return(<Card item={item}/>)
+                })}
             </div>
 
             
